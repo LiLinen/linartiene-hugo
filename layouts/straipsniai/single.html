@@ -1,0 +1,40 @@
+{{ define "main" }}
+    <section class="banner onload-image-fade-in onload-content-fade-right style3 content-align-left">
+        <div class="content">
+            <h1 class="h2">{{ .Title }}</h1>
+            {{ with .Description }}
+            <p>
+                <em>{{ . }}</em>
+            </p>
+            {{ end }}
+
+            <hr>
+            <div>
+                <h2 class="h3">{{ i18n "toc" }}</h2>
+                {{ .TableOfContents }}
+            </div>
+        </div>
+
+        {{ with .Params.image }}
+        {{ $imageParams := . }}
+        {{ $resource := $.Resources.GetMatch .src }}
+        {{ with $resource }}
+        <div class="image">
+            <img src="{{ .RelPermalink }}" {{ with $imageParams.alt }}alt="{{ $imageParams.alt }}" {{ end }}>
+        </div>
+        {{ end }}
+        {{ end }}
+</section>
+    <section class="spotlight style1 fullscreen content-align-left image-position-center">
+        <div class="content">
+            {{ .Content }}
+            <hr>
+
+            <div class="align-center">
+                <p>{{ i18n "social.share." }}
+                </p>
+                {{ partial "share_buttons.html" . }}
+            </div>
+        </div>
+</section>
+{{ end }}

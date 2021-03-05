@@ -1,0 +1,12 @@
+baseURL = "https://linartiene.lt/"
+defaultContentLanguage = "lt"
+languageCode = "lt-Lt"
+title = "Psichologė Monika Linartienė"
+
+[params]
+copyright = "Monika Linartienė"
+linkedin = "https://www.linkedin.com/in/monika-linartien%C4%97"
+email = "mailto:monika@linartiene.lt"
+
+[params.author]
+name = "Monika Linartienė"

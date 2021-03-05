@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    {{ with .Page.Description }}
+        <meta name="description" content="{{ . }}">
+    {{ end }}
+
+    {{ with .Params.tags }}
+        <meta name="keyword" content="{{ delimit . ", " }}">
+    {{ end }}
+
+    {{ block "styles" . }}
+        {{ partial "head/styles.html" . }}
+    {{ end }}
+
+    {{ block "opengraph" . }}
+        {{ partial "head/opengraph.html" . }}
+    {{ end }}
+
+    {{ block "schema" . }}{{ end }}
+    <title>
+        {{ block "title" . }}
+            {{ .Title }} | {{ .Site.Title }}
+        {{ end }}
+    </title>
+</head>
+
+<body class="is-preload">
+    <div id="wrapper" class="divided">
+        {{ block "header" . }}
+            {{ partial "header.html" . }}
+        {{ end }}
+        {{ block "navigation" . }}
+            {{ partial "navigation.html" . }}
+        {{ end }}
+
+        <main role="main">
+            {{ block "main" . }}{{ end }}
+        </main>
+
+        {{ block "footer" . }}
+            {{ partial "footer/footer.html" . }}
+        {{ end }}
+
+        {{ partial "footer/includes.html" . }}
+    </div>
+</body>
+</html>

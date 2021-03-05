@@ -1,0 +1,41 @@
+{{ $currentPage := .Page.RelPermalink }}
+
+<nav id="menu" role="navigation">
+    <div class="inner-menu">
+        <h2 class="menu-heading">
+            {{ i18n "navigation.menu" }}
+        </h2>
+        <ul class="alt">
+            {{ range .Site.Menus.main }}
+            <li {{ with .Children }}class="with-children"{{ end }}>
+                <a href="{{ .URL }}">
+                    {{ if (eq $currentPage .URL)  }}
+                    <strong>
+                        {{ end }}
+                        {{ .Title }}
+                        {{ if (eq $currentPage .URL)  }}
+                    </strong>
+                    {{ end }}
+                </a>
+                {{ with .Children }}
+                <ul>
+                    {{ range . }}
+                    <a href="{{ .URL }}">
+                        {{ if (eq $currentPage .URL)  }}
+                        <strong>
+                            {{ end }}
+                            {{ .Title }}
+                            {{ if (eq $currentPage .URL)  }}
+                        </strong>
+                        {{ end }}
+                    </a>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+
+    <a class="close" href="#menu">{{ i18n "navigation.close" }}</a>
+</nav>

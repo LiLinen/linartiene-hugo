@@ -1,0 +1,51 @@
+{{ define "main" }}
+    <section class="banner style5 content-align-left">
+        <div class="content">
+            <h1>{{ .Title }}</h1>
+        </div>
+        {{ $page := . }}
+        {{ with .Params.image }}
+        {{ $imageParams := . }}
+        {{ with $page.Resources.GetMatch .src }}
+        <div class="image">
+            <img
+                    src="{{ .RelPermalink }}"
+                    {{ with $imageParams.alt }} alt="{{ $imageParams.alt }}"{{ end }}
+            >
+        </div>
+        {{ end }}
+        {{ end }}
+
+    </section>
+    {{ range .Pages }}
+        {{ $page := . }}
+        <section class="spotlight style2 content-align-left">
+            <div class="content">
+                <header>
+                    <h2>{{ .Title }}</h2>
+                    {{ with .Description }}
+                    <p>{{ . }}</p>
+                    {{ end }}
+                </header>
+                {{ .Params.banner | markdownify }}
+
+                <ul class="actions stacked">
+                    <li>
+                        <a href="{{ .Permalink }}" class="button large wide smooth-scroll-middle">{{ i18n "list.more" }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            {{ with .Params.image }}
+            {{ $imageParams := . }}
+            {{ with $page.Resources.GetMatch .src }}
+            <div class="image">
+                <img src="{{ .RelPermalink }}"
+                     {{ with $imageParams.alt }} alt="{{ $imageParams.alt }}"{{ end }}
+                >
+            </div>
+            {{ end }}
+            {{ end }}
+        </section>
+    {{ end }}
+{{ end }}

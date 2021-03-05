@@ -1,0 +1,39 @@
+{{ $itemListElements := slice }}
+{{ range $index, $element := .Page.Params.breadcrumbs  }}
+    {{ if (isset . "href") }}
+            {{ $page := $.Site.GetPage .href }}
+            {{ $itemListElement := dict "@type" "ListItem"  "position" (add $index 1) "name" $element.name "item" $page.Permalink }}
+
+            {{ $itemListElements = $itemListElements | append $itemListElement }}
+
+        {{ else }}
+            {{ $itemListElement := dict "@type" "ListItem"  "position" (add $index 1) "name" $element.name }}
+
+            {{ $itemListElements = $itemListElements | append $itemListElement }}
+
+    {{ end }}
+{{ end  }}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": {{ $itemListElements }}
+    }
+</script>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {{ range .Page.Params.breadcrumbs  }}
+        <li class="breadcrumb-item" {{ if (not (isset . "href")) }}aria-current="page"{{ end }}>
+        {{ if (isset . "href") }}
+        <a href="{{ .href  }}">
+            {{ end }}
+
+            {{ .name  }}
+
+            {{ if (isset . "href") }}
+        </a>
+        {{ end  }}
+        </li>
+        {{ end }}
+    </ol>
+</nav>

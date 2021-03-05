@@ -1,0 +1,43 @@
+{{ $bundleName := ($.Get "bundle") }}
+{{ $bundle := .Site.GetPage $bundleName  }}
+{{ $contentName := ($.Get "content") }}
+{{ $isIndex := $.Get "index" | default false  }}
+
+{{ with $bundle }}
+    {{ $bundleResources := .Resources }}
+
+    {{- with $bundleResources.GetMatch $contentName -}}
+        <section {{ with .Params.class }} class="{{ . }}"{{ end }} {{ with .Params.id }} id="{{ . }}"{{ end }}>
+            {{ if ($isIndex) }}
+                <header>
+                    <h2>{{ .Title }}</h2>
+                    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+                </header>
+                <div class="content">
+            {{ else }}
+                <div class="content">
+                    <header>
+                        <h2>{{ .Title }}</h2>
+                        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+                    </header>
+            {{ end }}
+                    {{ .Content }}
+                </div>
+
+            {{ with .Params.image }}
+                {{ $imageResource := $bundleResources.GetMatch .src }}
+                {{ if $imageResource }}
+                    {{ $image := $imageResource.Resize .size }}
+                    <div class="image">
+                        <img src="{{ $image.RelPermalink }}" alt="{{ .alt }}">
+                    </div>
+                {{ end }}
+            {{ end }}
+        </section>
+    {{ else }}
+        <pre>No Bundle Resource</pre>
+
+    {{ end }}
+{{ else }}
+    <pre>No Bundle {{ $bundleName }}</pre>
+{{ end }}

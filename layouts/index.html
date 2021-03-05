@@ -1,0 +1,17 @@
+{{ define "title" }}
+    {{ .Title }}
+{{ end }}
+
+{{ define "header" }}
+    <header id="header" style="padding: 0">
+        <nav class="sidebar" role="navigation" aria-label="Main">
+            <ul>
+                <li><a href="#menu">Meniu</a></li>
+            </ul>
+        </nav>
+    </header>
+{{ end }}
+
+{{ define "main" }}
+    {{ .Content }}
+{{ end }}
