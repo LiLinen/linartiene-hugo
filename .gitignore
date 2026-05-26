@@ -1,4 +1,13 @@
-public/
-resources/_gen
+# Hugo build output
+/public/
+/resources/_gen/
 
-.idea
+# Hugo build lock
+.hugo_build.lock
+
+# IDEs
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
