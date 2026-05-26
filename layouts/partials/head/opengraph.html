@@ -6,6 +6,14 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}"/>
 
-{{ with $.Params.image }}
-    <meta property="og:image" content="{{ .src | absURL }}" />
+{{ $ogimage := "" }}
+{{ with $.Params.image }}{{ $ogimage = .src | absURL }}{{ else }}{{ with .Site.Params.ogimage }}{{ $ogimage = . | absURL }}{{ end }}{{ end }}
+{{ with $ogimage }}
+    <meta property="og:image" content="{{ . }}" />
 {{ end }}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ .Title }}" />
+<meta name="twitter:description"
+      content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
+{{ with $ogimage }}<meta name="twitter:image" content="{{ . }}" />{{ end }}

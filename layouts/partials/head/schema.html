@@ -1,0 +1,29 @@
+{{ if .IsHome }}
+{{ $email := .Site.Params.email | replaceRE "^mailto:" "" }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "{{ .Site.Title }}",
+    "description": "{{ .Site.Params.description }}",
+    "image": "{{ "img/logo.jpg" | absURL }}",
+    "url": "{{ .Site.BaseURL }}",
+    "telephone": "{{ .Site.Params.telephone }}",
+    "email": "{{ $email }}",
+    "areaServed": "Vilnius",
+    "availableLanguage": "lt",
+    {{ with .Site.Params.linkedin }}"sameAs": ["{{ . }}"],{{ end }}
+    "founder": {
+        "@type": "Person",
+        "name": "{{ .Site.Params.author.name }}",
+        "jobTitle": "Klinikinė psichologė"
+    },
+    "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "19:00"
+    }
+}
+</script>
+{{ end }}

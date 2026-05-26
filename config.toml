@@ -2,11 +2,15 @@ baseURL = "https://linartiene.lt/"
 defaultContentLanguage = "lt"
 languageCode = "lt-Lt"
 title = "Psichologė Monika Linartienė"
+enableRobotsTXT = true
 
 [params]
 copyright = "Monika Linartienė"
 linkedin = "https://www.linkedin.com/in/monika-linartien%C4%97"
 email = "mailto:monika@linartiene.lt"
+telephone = "+37060826232"
+ogimage = "img/logo.jpg"
+description = "Individualios psichologinės konsultacijos ir grupinė psichoterapija suaugusiems Vilniuje arba nuotoliniu būdu."
 
 [params.author]
 name = "Monika Linartienė"

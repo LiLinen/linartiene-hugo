@@ -6,7 +6,8 @@
 <link type="text/css" rel="stylesheet" href="{{ $css.RelPermalink }}">
 
 {{ $fa := resources.Get "/css/fontawesome-all.min.css" }}
-<link rel="preload" href="{{ $fa.Permalink }}" as="style">
+<link rel="preload" href="{{ $fa.Permalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $fa.Permalink }}"></noscript>
 
 <noscript>
     <link type="text/css"

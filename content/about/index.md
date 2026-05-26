@@ -13,7 +13,7 @@ menu:
     main:
         weight: 100
 ---
-{{< section bundle="about" content="headless/description.md" >}}
+{{< section bundle="about" content="headless/description.md" heading="h1" >}}
 
 {{< index-wrapper >}}
     {{< section bundle="about" content="headless/education.md" index=true >}}

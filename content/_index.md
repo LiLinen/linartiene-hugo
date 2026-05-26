@@ -9,7 +9,7 @@ menu:
         weight: 1
 ---
 {{< wrapper >}}
-    {{< section bundle="homepage" content="introduction.md" >}}
+    {{< section bundle="homepage" content="introduction.md" heading="h1" >}}
     {{< section bundle="homepage" content="individual-therapy.md" >}}
     {{< section bundle="homepage" content="group-therapy.md" >}}
     {{< section bundle="homepage" content="contact.md" >}}

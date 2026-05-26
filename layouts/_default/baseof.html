@@ -4,12 +4,14 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    <link rel="canonical" href="{{ .Permalink }}">
+
     {{ with .Page.Description }}
         <meta name="description" content="{{ . }}">
     {{ end }}
 
     {{ with .Params.tags }}
-        <meta name="keyword" content="{{ delimit . ", " }}">
+        <meta name="keywords" content="{{ delimit . ", " }}">
     {{ end }}
 
     {{ block "styles" . }}
@@ -21,6 +23,7 @@
     {{ end }}
 
     {{ block "schema" . }}{{ end }}
+    {{ partial "head/schema.html" . }}
     <title>
         {{ block "title" . }}
             {{ .Title }} | {{ .Site.Title }}
