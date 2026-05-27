@@ -17,4 +17,4 @@ Konsultavimas retai kada būna greitas vaistas; tai greičiau kupinas patyrimų 
 
 
 Susitinkame kartą per savaitę 50 minučių pokalbiui. 
-Karantino laikotarpiu susitinkame nuotliniu būdu.
+Karantino laikotarpiu susitinkame nuotoliniu būdu.

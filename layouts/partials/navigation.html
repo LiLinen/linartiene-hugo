@@ -20,15 +20,17 @@
                 {{ with .Children }}
                 <ul>
                     {{ range . }}
-                    <a href="{{ .URL }}">
-                        {{ if (eq $currentPage .URL)  }}
-                        <strong>
-                            {{ end }}
-                            {{ .Title }}
+                    <li>
+                        <a href="{{ .URL }}">
                             {{ if (eq $currentPage .URL)  }}
-                        </strong>
-                        {{ end }}
-                    </a>
+                            <strong>
+                                {{ end }}
+                                {{ .Title }}
+                                {{ if (eq $currentPage .URL)  }}
+                            </strong>
+                            {{ end }}
+                        </a>
+                    </li>
                     {{ end }}
                 </ul>
                 {{ end }}

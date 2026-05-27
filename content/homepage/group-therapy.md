@@ -22,7 +22,7 @@ Grupė gali padėti, jei:
 
 
 Grupės susitikimai vyksta kartą per savaitę ir trunka 90 minučių. 
-Karantino laikotarpiu susitinkame nuotliniu būdu.
+Karantino laikotarpiu susitinkame nuotoliniu būdu.
 
 
 Prieš prisijungiant į grupę vyksta 3-4 individualūs susitikimai.
