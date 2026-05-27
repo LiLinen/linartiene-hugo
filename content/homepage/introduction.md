@@ -2,7 +2,7 @@
 title: Monika Linartienė
 description: Klinikinė psichologė, psichodinaminės grupių psichoterapijos kandidatė
 id: introduction
-class: banner onload-image-fade-in onload-content-fade-right style3 fullscreen orient-left content-align-left
+class: banner style3 fullscreen orient-left content-align-left
 image:
     src: profile.jpg
     size: 1200x

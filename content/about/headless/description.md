@@ -1,7 +1,7 @@
 ---
 id: description
 title: Apie Mane
-class: spotlight style2 orient-right image-position-center onload-image-fade-in onload-content-fade-right
+class: spotlight style2 orient-right image-position-center
 image:
     src: headless/description.jpeg
     size: 900x 
