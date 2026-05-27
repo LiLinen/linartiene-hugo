@@ -9,6 +9,6 @@
 
 {{ $js := (slice $jquery $scrollex $scrolly $browser $breakpoints $util $main $app) }}
 {{ $js = $js | resources.Concat "js/bundle.js" }}
-{{ $js = $js | resources.Minify }}
-<script src="{{ $js.RelPermalink }}"></script>
+{{ $js = $js | resources.Minify | fingerprint }}
+<script defer src="{{ $js.RelPermalink }}"></script>
 

@@ -28,9 +28,16 @@
             {{ with .Params.image }}
                 {{ $imageResource := $bundleResources.GetMatch .src }}
                 {{ if $imageResource }}
-                    {{ $image := $imageResource.Resize .size }}
+                    {{ $webp := $imageResource.Resize (printf "%s webp q80" .size) }}
+                    {{ $jpg := $imageResource.Resize (printf "%s q80" .size) }}
+                    {{ $isLcp := eq $heading "h1" }}
                     <div class="image">
-                        <img src="{{ $image.RelPermalink }}" alt="{{ .alt }}">
+                        <picture>
+                            <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+                            <img src="{{ $jpg.RelPermalink }}" alt="{{ .alt }}"
+                                 width="{{ $jpg.Width }}" height="{{ $jpg.Height }}"
+                                 {{ if $isLcp }}fetchpriority="high" decoding="async"{{ else }}loading="lazy" decoding="async"{{ end }}>
+                        </picture>
                     </div>
                 {{ end }}
             {{ end }}

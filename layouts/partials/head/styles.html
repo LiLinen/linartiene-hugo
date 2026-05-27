@@ -1,8 +1,13 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i&display=swap"></noscript>
+
 {{ $mainCss := resources.Get "css/main.css" }}
 {{ $appCss := resources.Get "css/app.css" }}
 {{ $css := (slice $mainCss $appCss) }}
 {{ $css = $css | resources.Concat "css/bundle.css" }}
-{{ $css := $css | resources.Minify }}
+{{ $css := $css | resources.Minify | fingerprint }}
 <link type="text/css" rel="stylesheet" href="{{ $css.RelPermalink }}">
 
 {{ $fa := resources.Get "/css/fontawesome-all.min.css" }}
@@ -14,3 +19,12 @@
           rel="stylesheet"
           href="{{ `css/noscript.css` | relURL }}"/>
 </noscript>
+
+{{ if .IsHome }}
+    {{ with .Site.GetPage "homepage" }}
+        {{ with .Resources.GetMatch "profile.jpg" }}
+            {{ $lcp := .Resize "1200x webp q80" }}
+            <link rel="preload" as="image" href="{{ $lcp.RelPermalink }}" fetchpriority="high">
+        {{ end }}
+    {{ end }}
+{{ end }}
