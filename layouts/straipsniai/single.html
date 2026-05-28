@@ -17,11 +17,26 @@
 
         {{ with .Params.image }}
         {{ $imageParams := . }}
-        {{ $resource := $.Resources.GetMatch .src }}
-        {{ with $resource }}
-        <div class="image">
-            <img src="{{ .RelPermalink }}" {{ with $imageParams.alt }}alt="{{ $imageParams.alt }}" {{ end }}>
-        </div>
+        {{ with $.Resources.GetMatch .src }}
+            {{ $jpg := .Resize "1200x q80" }}
+            {{ $jpg400 := .Resize "400x q80" }}
+            {{ $jpg800 := .Resize "800x q80" }}
+            {{ $webp := .Resize "1200x webp q80" }}
+            {{ $webp400 := .Resize "400x webp q80" }}
+            {{ $webp800 := .Resize "800x webp q80" }}
+            <div class="image">
+                <picture>
+                    <source type="image/webp"
+                            srcset="{{ $webp400.RelPermalink }} 400w, {{ $webp800.RelPermalink }} 800w, {{ $webp.RelPermalink }} 1200w"
+                            sizes="(max-width: 736px) 100vw, 50vw">
+                    <img src="{{ $jpg.RelPermalink }}"
+                         srcset="{{ $jpg400.RelPermalink }} 400w, {{ $jpg800.RelPermalink }} 800w, {{ $jpg.RelPermalink }} 1200w"
+                         sizes="(max-width: 736px) 100vw, 50vw"
+                         width="{{ $jpg.Width }}" height="{{ $jpg.Height }}"
+                         alt="{{ $imageParams.alt }}"
+                         fetchpriority="high" decoding="async">
+                </picture>
+            </div>
         {{ end }}
         {{ end }}
 </section>

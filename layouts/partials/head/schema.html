@@ -6,7 +6,7 @@
     "@type": "ProfessionalService",
     "name": "{{ .Site.Title }}",
     "description": "{{ .Site.Params.description }}",
-    "image": "{{ "img/logo.jpg" | absURL }}",
+    {{ with resources.Get "img/logo.jpg" }}{{ with .Resize "300x q85" }}"image": "{{ .Permalink }}",{{ end }}{{ end }}
     "url": "{{ .Site.BaseURL }}",
     "telephone": "{{ .Site.Params.telephone }}",
     "email": "{{ $email }}",

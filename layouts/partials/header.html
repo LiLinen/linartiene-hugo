@@ -1,7 +1,18 @@
 <header id="header">
     <div class="inner">
         <a href="/" class="logo">
-            <img style="display: inline-block; border-radius: 100%; width: 60px;margin-right: 0.5rem" src="{{ "/img/logo.jpg" }}" alt="{{ .Site.Title }}">
+            {{ with resources.Get "img/logo.jpg" }}
+                {{ $jpg := .Resize "120x q85" }}
+                {{ $webp := .Resize "120x webp q85" }}
+                <picture>
+                    <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+                    <img style="display: inline-block; border-radius: 100%; margin-right: 0.5rem"
+                         src="{{ $jpg.RelPermalink }}"
+                         width="60" height="60"
+                         alt="{{ $.Site.Title }}"
+                         decoding="async">
+                </picture>
+            {{ end }}
             <span class="title">{{ .Site.Title }}</span>
         </a>
 
